@@ -13,7 +13,6 @@
 }
 
 :root {
-    font-size: 62.5%;
 
     --primary: theme('colors.primary');
     --secondary: theme('colors.secondary');
@@ -28,6 +27,5 @@
 html, body {
     height: 100vh;
     width: 100vw;
-    font-size: 1.6rem;
     overflow: hidden;
 }

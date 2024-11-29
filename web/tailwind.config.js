@@ -14,6 +14,7 @@ export default {
     content: [
         "./index.html",
         "./src/**/*.{svelte,js,ts,jsx,tsx}",
+        "./node_modules/flowbite-svelte-icons/**/*.{html,js,svelte,ts}",
       ],
   theme: {
     extend: {
