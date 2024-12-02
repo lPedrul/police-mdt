@@ -37,6 +37,11 @@
     TruckSolid,
     ExclamationCircleSolid,
   } from 'flowbite-svelte-icons';
+  import Profiles from '@components/Profiles.svelte';
+  import Incidents from '@components/Incidents.svelte';
+  import Reports from '@components/Reports.svelte';
+  import Warrants from '@components/Warrants.svelte';
+  import Vehicles from '@components/Vehicles.svelte';
 
   const sidebarItems = [
     {
@@ -49,26 +54,31 @@
       itemId: 'profiles',
       itemName: 'Profile',
       icon: UserSolid,
+      itemContent: Profiles,
     },
     {
       itemId: 'incidents',
       itemName: 'Incidents',
       icon: FolderOpenSolid,
+      itemContent: Incidents,
     },
     {
       itemId: 'reports',
       itemName: 'Reports',
       icon: FolderOpenSolid,
+      itemContent: Reports,
     },
     {
       itemId: 'warrants',
       itemName: 'BOLOs/Warrants',
       icon: ExclamationCircleSolid,
+      itemContent: Warrants,
     },
     {
       itemId: 'vehicles',
       itemName: 'Vehicles',
       icon: TruckSolid,
+      itemContent: Vehicles,
     },
   ];
 
@@ -78,8 +88,8 @@
   }[] = $state([]);
 
   openTab({
-    tabName: 'Test',
-    tabContent: Dashboard,
+    tabName: 'Incidents',
+    tabContent: Incidents,
   });
 
   function openTab(tabInfo: {
@@ -95,7 +105,7 @@
     tabContent: __sveltets_2_IsomorphicComponent<any>;
   }) {
     const index = openTabs.indexOf(tabInfo);
-    if (index > -1) openTabs.pop();
+    if (index > -1) openTabs.splice(index, 1);
   }
 
   CONFIG.set({
@@ -148,25 +158,25 @@
         <div
           class={`shrink h-full w-full mb-10 ${openTabs.length === 0 ? 'invisible' : ''}`}
         >
-          <Tabs contentClass="h-full w-full bg-gray-700 rounded-br-xl">
+          <Tabs contentClass="h-full w-full rounded-br-xl">
             {#each openTabs as openTab}
               <TabItem
                 open
                 title={openTab.tabName}
-                class="bg-gray-700 px-3 py-1 mb-2 text-md font-bold mr-2"
+                divClass="h-full"
+                class="bg-gray-700 px-3 py-1 mb-2 text-md font-bold mr-2 h-full"
               >
                 <Button
                   on:click={() => closeTab(openTab)}
                   class="absolute right-4 bg-red-500 rounded-md px-1 mt-2"
                   ><CloseOutline /></Button
                 >
-                <openTab.tabContent />
+                <openTab.tabContent/>
               </TabItem>
             {/each}
           </Tabs>
         </div>
       </div>
-      <!-- Sub Containers -->
     </div>
   </TabletOverlay>
 </Visibility>
